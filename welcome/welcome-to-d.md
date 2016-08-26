@@ -1,6 +1,6 @@
 # D Diline Hoşgeldiniz
 
-*D Programlama Dili'*nin interaktif turuna hoş geldiniz.
+Etkileşimli *D Programlama Dili'* turuna hoş geldiniz.
 
 {{#dmanmobile}}
 
@@ -16,7 +16,7 @@ D dili çeşitli diller için *derleyici geliştirmekle geçen onlarca yıllık 
 
 - Mükemmel modelleme gücü için _yüksek seviyeli_ dil yapısı
 - Yüksek performanslı, işlemci koduna derlenen bir dil
-- Statik tipleme
+- Statik tür tanımlamaları
 - C++'ın evrim geçirmiş hali (hatalı yanları olmadan)
 - İşletim sistemi API'ı ve donanıma direk (katmansız) erişim
 - Olağanüstü derleme hızı
@@ -33,16 +33,16 @@ D dili çeşitli diller için *derleyici geliştirmekle geçen onlarca yıllık 
 
 ### Tur Hakkında
 
-Her bölüm üzerinde oynayıp D dilinin özelliklerini deneyebileceğin kod örneklerine sahip.
-'Çalıştır' butonu veya `Ctrl+Enter` tuş kombinasyonuyla kodları derlyip çalıştırabilirsiniz.
+Her bölüm, değiştirilebilir kod örnekleri ile beraber gelmektedir.
+Bu sayede D dilinin özelliklerini deneyimleyebilirsiniz.
+Çalıştır düğmesine basarak (veya `Kntrl-enter` ile) programı derleyebilir ve çalıştırabilirsiniz.
 
+### Katkıda Bulun
 
-### Katıda Bulunmak
+Bu tur [açık kaynaklı](https://github.com/stonemaster/dlang-tour) bir projedir.
+Bu turu daha iyi bir hale getirmek için yapacağınız katkılardan memnun kalırız.
 
-Bu tur [açık kaynaklı](https://github.com/stonemaster/dlang-tour) bir projedir ve bize bu
-projenin daha da iyi olması için yapacağınız her katkı bizi çok memnun eder.
-
-## {KaynakKod}
+## {SourceCode}
 
 ```d
 import std.stdio;
