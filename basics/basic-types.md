@@ -1,11 +1,6 @@
-# Temel Veri Türleri
+# Temel Veri Tipleri
 
-D dilinde platformdan **bağımsız** olarak her zaman aynı
-boyutta olan temel veri türleri vardır. Tek istisna, mümkün 
-olan en geniş aralıkta kayan noktalı sayıları(floating point)
-sağlayan `real` veri türüdür. `Int` (tam sayı) veri türünün boyutu,
-uygulamanın 32 bit veya 64 bite derlenmesinden etkilenmez ve her
-zaman aynıdır.
+D dilinde platformdan **bağımsız** olarak her zaman aynı boyutta olan temel veri tipleri vardır. Tek istisna, mümkün olan en geniş aralıkta kayan noktalı sayıları (floating point) sağlayan `real` veri tipidir. Uygulamanın 32-bit veya 64-bit derlenmesi tam sayı (int, long...) tiplerinin boyutunda herhangi bir değişikliğe neden olmaz.
 
 | tür                           | boyut
 |-------------------------------|------------
@@ -15,64 +10,42 @@ zaman aynıdır.
 |`int`, `uint`, `dchar`         | 32-bit
 |`long`, `ulong`                | 64-bit
 
-#### Kayan Noktalı Sayı Türleri:
+#### Kayan Noktalı Sayı Tipleri:
 
 | tür     | boyut
 |---------|--------------------------------------------------
 |`float`  | 32-bit
 |`double` | 64-bit
-|`real`   | >= 64-bit (genellikle 64-bit, Intel x86 da 80-bit)
+|`real`   | >= 64-bit (genellikle 64-bit, Intel x86 için 80-bit)
 
-`u` öneki `unsigned` (işaretsiz) tür anlamına gelir.
-`char` UTF-8 karakterine çevirilirken, `wchar` UTF-16 karakter dizisinde ve `dchar`
-UTF32 karakter dizisinde kullanılır.
+`u` öneki *işaretsiz* (unsigned) tip anlamına gelir. `char` UTF-8 karakterini ifade eder, `wchar` UTF-16 karakter dizisinde (string) ve `dchar` UTF-32 karakter dizisinde kullanılır.
 
-Farklı türdeki değişkenler arasındaki tür dönüşümlerine veri kaybı olmadığı sürece
-izin verilir. Ancak, kayan noktalı sayılarda (örneğin `double` veri türünden
-`float` veri türüne) dönüşümlere izin verilir. 
+Derleyici farklı tipdeki değişkenler arasında tür dönüşümlerine (cast) veri kaybı olmadığı sürece izin verir. Ancak kayan noktalı sayılar arasındaki (örneğin `double` -> `float`) dönüşümlere her zaman izin verilir.
 
-Başka veri türüne dönüşümü `cast(TÜR) değişken` ile zorunlu kılabilirsiniz.
-Fakat bu özellik dikkatlice kullanılmalıdır. `cast` ifadesi tür yapısını
-bozabilir.
+Özellikle başka bir veri tipine dönüşüm yapmak istediğinizde `cast(TÜR) değişken` ifadesiyle yapabilirsiniz. Fakat bu özellik dikkatlice kullanılmalıdır. `cast` ifadesi tür yapısını bozabilir.
 
-Özel anahtar kelime `auto`, bir değişken oluşturur ve değişkenin türü
-ifadenin sağ tarafından (right hand side) çıkarım yapılarak belirlenir.
-`auto yaş = 19;` ifadesinde `yaş` değişkenini `int` türünde olmasını
-sağlayacaktır. Fakat değişkenin türü, türü belirtilmiş diğer
-değişkenler gibi derleme zamanında (compile-time) belirlenir
-ve sonradan değiştirilemez. 
+`auto` anahtar kelimesiyle değişken oluşturduğunuzda derleyici değişkene atadığınız ilk değere (initialization) bakarak değişkenin tipini otomatik belirler. `auto derece = -273.15f` ifadesinde `derece` değişkenin tipi `float` olur. Değişkenin türünün çalışma zamanında değişmediğine dikkat edin, otomatik tür belirleme derleme sırasında gerçekleşir ve aynı kalır.
 
 ### Tür Nitelikleri
 
-Tüm veri türlerinin ilk değerini gösteren `.init` niteliği vardır. 
-Bütün tam sayılar için `0` ve kayan noktalı sayılar için ise `nan` sayı değil
-(*not a number*) başlangıç değeridir.
+Tüm veri türlerinin varsayılan değerini gösteren `.init` niteliği vardır. Bütün tam sayılar için `0` ve kayan noktalı sayılar için ise `nan` (*not a number* / *sayı değil*) varsayılan değerdir.
 
-Tam sayı ve kayan noktalı sayılarda, atanabilecek en yüksek değeri gösteren
-`.max` niteliği vardır. Tam sayılar, atanabilecek en küçük değeri ifade eden
-`.min` niteliğine sahipken kayan noktalı sayılarda 0'dan farklı en küçük değeri
-ifade eden `.min_normal` niteliğine sahiptir.
+Tam sayı ve kayan noktalı sayılarda, tutabilecekleri en yüksek değeri gösteren `.max` niteliği vardır. Tam sayılara aynı zamanda tutabildiği en küçük değeri ifade eden `.min` niteliğine sahipken kayan noktalı sayılarda 0'dan farklı en küçük normalize değeri ifade eden `.min_normal` niteliğine sahiptir.
 
-Kayan noktalı sayılar ayrıca `.nan` (NaN değeri), `.infinity` (sonsuz değeri), `.dig`
-(hassasiyetteki ondalık rakam sayısı), `.mant_dig` (mantissadaki bit sayısı)
-gibi daha bir çok niteliğe sahiptir.
+Kayan noktalı sayılar ayrıca `.nan` (NaN değeri), `.infinity` (sonsuz değeri), `.dig` (ondalık basamak sayısı/hassasiyeti), `.mant_dig` (mantissadaki bit sayısı) gibi daha bir çok niteliğe sahiptir.
 
-Her türün ayrıca türün okunaklı ismini döndüren `.stringof` niteliği vardır.
+Her türün ayrıca ismini karakter dizisi olarak döndüren `.stringof` niteliği vardır.
 
 ### D Dilinde İndeksler
 
-İndeksler genellikle `size_t` takma adına sahiptir. Bu tür erişilebilir
-hafızadaki bütün ofsetleri temsil edebilecek büyüklüktedir.
-32 bit mimari için `uint`, 64 bit mimari içinse `ulong` veri türünün takma adıdır.
+D dilinde indeksler genellikle `size_t` türünü kullanır. Bu tür erişilebilir bütün hafızayı temsil etmek için yeterli büyüklükte tanımlanmıştır. 32-bit mimari için `uint`, 64-bit mimari içinse `ulong` veri türünü ifade eder.
 
 ### Assert İfadeleri
 
-`assert`, debug modunda çalışarak koşulları doğrular ve koşul sağlanmadığında
-`AssertionError` ile programı durdurur.
+`assert(koşul)` sadece debug modunda çalışıp koşulları doğrulayan ve koşul sağlanamadığında `AssertionError` ile programı durduran bir ifadedir.
+Bu yüzden `assert(0)` erişilemez kodu işaretlemek için kullanılır.
 
-Bu yüzdendir ki `assert(0)` erişilemez kodu işaretlemek için kullanılır.
-
-### Geniş Kapsamlı
+### Detaylı
 
 #### Temel Kaynaklar
 
@@ -86,8 +59,8 @@ Bu yüzdendir ki `assert(0)` erişilemez kodu işaretlemek için kullanılır.
 
 - [D dilindeki bütün veri türlerine genel bakış](https://dlang.org/spec/type.html)
 - [`auto` ve `typeof`](http://ddili.org/ders/d/auto.html)
-- [Nitelikler](http://www.ddili.org/ders/d/nitelikler.html)
-- [Assert İfadeleri](http://www.ddili.org/ders/d/assert.html)
+- [Tür Nitelikleri](http://www.ddili.org/ders/d/nitelikler.html)
+- [Assert İfadesi](http://www.ddili.org/ders/d/assert.html)
 
 ## {SourceCode}
 
@@ -101,18 +74,18 @@ void main()
     // ile ayrılabilir.
     int b = 7_000_000;
     short c = cast(short) b; // dönüşüm gereklidir
-    uint d = b; // Uygun
+    uint d = b; // sorun yok
     int g;
     assert(g == 0);
 
-    auto f = 3.1415f; // f, float olduğunu belirtir.
+    auto f = 3.1415f; // f eki float olduğunu belirtir
 
     // typeid(DEĞİŞKEN) ifadenin tür bilgisini döndürür
     writeln("f nin türü = ", typeid(f));
-    double pi = f; // Uygun
+    double pi = f; // sorun yok
     // kayan noktalı sayı türleri için
     // daha küçük kayan noktalı sayılara
-    // dönüşüme izin verilir.
+    // dönüşüme izin verilir
     float daha_küçük = pi;
 
     // Tür niteliklerine erişim

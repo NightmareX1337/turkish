@@ -2,48 +2,31 @@
 
 {{#img-right}}turtle.svg{{/img-right}}
 
-D dilinin ana tasarım amacı tutarlı olmak ve uç durumlardan uzak durmaktır.
-Bu durum [_turtles all the way down_](https://en.wikipedia.org/wiki/Turtles_all_the_way_down) olarak söylenir.
-Bu durumun iyi bir örneği ise `import` ifadesidir. 
+D dili tasarlanırken ana amaçlardan birisi de tutarlı olmak ve uç durumlardan uzak durmaktı. Bu durum [_sonuna kadar kaplumbağalar_](https://en.wikipedia.org/wiki/Turtles_all_the_way_down) olarak bilinir. Bunun güzel bir örneği ise `import` ifadesidir.
 
 ## Modül Eklemek
 
-D dilindeki basit bir merhaba dünya uygulaması için, `import` gereklidir.
-`import` ifadesi verilen `modül`deki herkese açık (public) tüm işlev (function) ve türleri
-kullanılabilir/erişilebilir kılar.
+D dilindeki basit merhaba dünya uygulaması için, `import` gerekir. `import` ifadesi verilen `modül`deki herkese açık (public) tüm fonksiyon ve tipleri kullanılabilir/erişilebilir kılar.
 
-### The turtles start falling down
+### Kaplumbağalar Düşerse
 
-Bir `import` ifadesi kaynak kodun en üst satırında bulunmak zorunda __değil__. 
-Yerel bir şekilde işlevlerin ya da kapsamların içerisinde kullanılabilir.
-Sonraki bölümlerde bunun D dilindeki neredeyse bütün kavramlarda uygulandığını göreceksiniz.
-D dili nedensizce kısıtlamalar uygulamaz.
+Bir `import` ifadesi kaynak kodun en üst satırında bulunmak zorunda __değildir__. Fonksiyonların ya da kapsamların (scope) içerisinde de kullanılabilir. Sonraki bölümlerde bunun D dilindeki neredeyse bütün kavramlarda uygulandığını göreceksiniz. D dili nedensizce kısıtlamalar uygulamaz.
 
-### Modülden Seçerek Eklemek 
-Herkesçe kabul edilen kütüphane, [Phobos](https://dlang.org/phobos/),
-`std` paketinin içindedir ve modüllere `import std.MODÜL` şeklinde erişilir.
+### Modülden Seçerek Eklemek
+
+Standart kütüphane [Phobos](https://dlang.org/phobos/), `std` paketinin içindedir ve modüllere `import std.MODÜL` şeklinde erişilir.
 
 Ayrıca `import` ifadesi modülün içinden belirli sembolleri seçmek için de kullanılabilir.
 
     import std.stdio : writeln, writefln;
 
-Modülden seçerek eklemek, okunabilirliği arttırmak ve bir sembolün nereden geldiğini
-göstermek için kullanılabilir. Ayrıca farklı modüllerdeki aynı isme sahip
-semboller arasındaki çakışmayı engellemek için kullanılabilir.
+Modülden seçerek eklemek, bir sembolün nereden geldiğini net bir şekilde belli ederek okunabilirliği arttırmak ve ayrıca farklı modüllerdeki aynı isme sahip semboller arasındaki çakışmayı engellemek için de kullanılabilir.
 
 ### Dizin ve Dosyalarla Eşleşme
 
-D'nin modül sistemi - diğer sistemlere kıyasla - tamamen dosya bazlıdır. 
-Örneğin, 'benim.kedim' her zaman `benim` klasörü içerisindeki `kedim.d` dosyasını gösterir.
-`benim` klasörü şu anki çalışma dizini içerisinde veya tanımlanmış dizinlerden
-(dmd derleyicisine `-I` argümanı ile tanımlanır) birinde bulunmalıdır.
-Son olarak, büyük modülleri bir çok ufak dosyaya bölmek için `kedim.d` dosyası
-yerine `kedim/` klasörü kullanılabilir.
-D derleyicisi bu durumda `benim/kedim.d` dosyası yerine `benim/kedim/package.d` dosyasını
-yükleyecektir.
+D'nin modül sistemi — diğer sistemlerin aksina — tamamen dosya üzerine kuruludur. Örneğin, 'benim.kedim' her zaman `benim` klasörü içerisindeki `kedim.d` dosyasını gösterir. `benim` klasörü o anki çalışma dizini içerisinde veya tanımlanmış dizinlerden (dmd derleyicisine `-I` argümanı ile tanımlanır) birinde bulunmalıdır. Son olarak, büyük modülleri bir çok ufak dosyaya bölmek için `kedim.d` dosyası yerine `kedim/` klasörü kullanılabilir. D derleyicisi bu durumda `benim/kedim.d` dosyası yerine `benim/kedim/package.d` dosyasını yüklemeyi dener.
 
-`package.d` için gelenek (zorunlu değil), aynı dizindeki diğer modülleri `public`
-olarak import etmektir. 
+Genellikle (zorunlu değil) `package.d` içinde aynı dizindeki diğer modüller `public` olarak import edilir.
 
 ## {SourceCode}
 
