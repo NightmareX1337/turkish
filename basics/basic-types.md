@@ -73,14 +73,16 @@ void main()
     // artırmak için "_"
     // ile ayrılabilir.
     int b = 7_000_000;
-    short c = cast(short) b; // dönüşüm gereklidir
+    short c = cast(short) b; // dönüşüm gerekli
     uint d = b; // sorun yok
     int g;
     assert(g == 0);
 
-    auto f = 3.1415f; // f eki float olduğunu belirtir
+    // f eki float olduğunu belirtir
+    auto f = 3.1415f;
 
-    // typeid(DEĞİŞKEN) ifadenin tür bilgisini döndürür
+    // typeid(DEĞİŞKEN) ifadenin
+    // tür bilgisini döndürür
     writeln("f nin türü = ", typeid(f));
     double pi = f; // sorun yok
     // kayan noktalı sayı türleri için
